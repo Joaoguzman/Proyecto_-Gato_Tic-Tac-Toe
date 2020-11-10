@@ -1,5 +1,6 @@
 import random
 import time
+import os
 
 gato_tablero = {
     "A1":"",
@@ -46,6 +47,7 @@ while True:
         continue
 mostrar_tablero()
 '''
+
 ficha_jugador=''
 ficha_cpu=''
 
@@ -70,9 +72,10 @@ if ficha_jugador == 'X' or ficha_jugador=='O':
     print("Su Ficha elegida es: ", ficha_jugador)
     print("La ficha de la cpu es: ", ficha_cpu)
     mostrar_tablero()
-    input("Presione una Tecla para continuar...")
+    input("Presione una Enter para continuar...")
 
 while True:
+    os.system("cls")
     mostrar_tablero()
     while True:
         print("El jugador", ficha_jugador ,"está en su jugada\n")
@@ -85,9 +88,12 @@ while True:
             print("Vuelva a intentar")
             continue
     #COMPROBAR SI ES GANADOR
+    os.system("cls")
+    mostrar_tablero()
     while True:
+        print("La cpu esta pensando su jugada ... ")
         jugada_cpu_1 = random.choice(alternativas)
-        time.sleep(3)
+        time.sleep(random.randint(1,10))
         if gato_tablero.get(jugada_cpu_1) == "":
             gato_tablero[jugada_cpu_1] = "O"
             break
