@@ -14,39 +14,21 @@ gato_tablero = {
     "C3":"",   
 }
 alternativas = ["A1", "A2", "A3", "B1", "B2", "B3", "C1", "C2", "C3"]
-
+x = " "
 def mostrar_tablero():
-    print("\t", "1\t", "2\t", "3\t")
-    print("A", gato_tablero["A1"], "-  ", gato_tablero["A2"], "-  ", gato_tablero["A3"], "-  ")
-    print("B", gato_tablero["B1"], "-  ", gato_tablero["B2"], "-  ", gato_tablero["B3"], "-  ")
-    print("C", gato_tablero["C1"], "-  ", gato_tablero["C2"], "-  ", gato_tablero["C3"], "-  ")
+    print('')
+    print(4*x +'1', 3*x +'2', 3*x +'3')
+    print('')
+    print("A", 3*x+ gato_tablero["A1"], " | ", gato_tablero["A2"], " | ", gato_tablero["A3"])
+    print(3*x +'--------------')
+    print("B", 3*x+ gato_tablero["B1"], " | ", gato_tablero["B2"], " | ", gato_tablero["B3"],)
+    print(3*x +'--------------')
+    print("C", 3*x+ gato_tablero["C1"], " | ", gato_tablero["C2"], " | ", gato_tablero["C3"],)
+    print('')
+    print('')
 
+contador_empate = 0
 mostrar_tablero()
-'''
-#Ingresa un valor. Si la casilla esta vacía lo asigna. Si no, indica que la posición está ocupada y continua con el ciclo while.
-while True:
-    jugada1 = input("Ingrese su jugada")
-    if gato_tablero.get(jugada1) == "":
-        gato_tablero[jugada1] = "X"
-        break
-    else:
-        print("Posición ocupada")
-        continue
-#Se muestra el nuevo estado del tablero. 
-mostrar_tablero()
-
-#La CPU escoje un valor. 
-while True:
-    jugada_cpu_1 = random.choice(alternativas)
-    time.sleep(3)
-    if gato_tablero.get(jugada_cpu_1) == "":
-        gato_tablero[jugada_cpu_1] = "O"
-        break
-    else:
-        print("Posición ocupada")
-        continue
-mostrar_tablero()
-'''
 
 ficha_jugador=''
 ficha_cpu=''
@@ -82,12 +64,40 @@ while True:
         jugada1 = input("Ingrese su jugada")
         if gato_tablero.get(jugada1) == "":
             gato_tablero[jugada1] = ficha_jugador
+            contador_empate += 1
             break
         else:
             print("Posición ocupada")
             print("Vuelva a intentar")
             continue
     #COMPROBAR SI ES GANADOR
+    if gato_tablero["A1"] == ficha_jugador and gato_tablero["A2"] == ficha_jugador and gato_tablero["A3"] == ficha_jugador:
+        print("Felicitaciones!: GANASTE")
+        break
+    elif gato_tablero["B1"] == ficha_jugador and gato_tablero["B2"] == ficha_jugador and gato_tablero["B3"] == ficha_jugador:
+        print("Felicitaciones!: GANASTE")
+        break        
+    elif gato_tablero["C1"] == ficha_jugador and gato_tablero["C2"] == ficha_jugador and gato_tablero["C3"] == ficha_jugador:
+        print("Felicitaciones!: GANASTE")
+        break
+    elif gato_tablero["A1"] == ficha_jugador and gato_tablero["B1"] == ficha_jugador and gato_tablero["C1"] == ficha_jugador:
+        print("Felicitaciones!: GANASTE")
+        break        
+    elif gato_tablero["A2"] == ficha_jugador and gato_tablero["B2"] == ficha_jugador and gato_tablero["C2"] == ficha_jugador:
+        print("Felicitaciones!: GANASTE")
+        break        
+    elif gato_tablero["A3"] == ficha_jugador and gato_tablero["B3"] == ficha_jugador and gato_tablero["C3"] == ficha_jugador:
+        print("Felicitaciones!: GANASTE")
+        break    
+    elif gato_tablero["A1"] == ficha_jugador and gato_tablero["B2"] == ficha_jugador and gato_tablero["C3"] == ficha_jugador:
+        print("Felicitaciones!: GANASTE")
+        break    
+    elif gato_tablero["A3"] == ficha_jugador and gato_tablero["B2"] == ficha_jugador and gato_tablero["C1"] == ficha_jugador:
+        print("Felicitaciones!: GANASTE")
+        break
+    if contador_empate == 9:
+        print("La partida resultó en empate")
+        break
     os.system("cls")
     mostrar_tablero()
     while True:
@@ -95,9 +105,37 @@ while True:
         jugada_cpu_1 = random.choice(alternativas)
         time.sleep(random.randint(1,10))
         if gato_tablero.get(jugada_cpu_1) == "":
-            gato_tablero[jugada_cpu_1] = "O"
+            gato_tablero[jugada_cpu_1] = ficha_cpu
+            contador_empate += 1
             break
         else:
             print("Posición ocupada")
             continue
     #COMPROBAR SI ES GANADOR
+    if gato_tablero["A1"] == ficha_cpu and gato_tablero["A2"] == ficha_cpu and gato_tablero["A3"] == ficha_cpu:
+        print("Lo sentimos!: LA CPU HA GANADO")
+        break        
+    elif gato_tablero["B1"] == ficha_cpu and gato_tablero["B2"] == ficha_cpu and gato_tablero["B3"] == ficha_cpu:
+        print("Lo sentimos!: LA CPU HA GANADO")
+        break        
+    elif gato_tablero["C1"] == ficha_cpu and gato_tablero["C2"] == ficha_cpu and gato_tablero["C3"] == ficha_cpu:
+        print("Lo sentimos!: LA CPU HA GANADO")
+        break        
+    elif gato_tablero["A1"] == ficha_cpu and gato_tablero["B1"] == ficha_cpu and gato_tablero["C1"] == ficha_cpu:
+        print("Lo sentimos!: LA CPU HA GANADO")
+        break        
+    elif gato_tablero["A2"] == ficha_cpu and gato_tablero["B2"] == ficha_cpu and gato_tablero["C2"] == ficha_cpu:
+        print("Lo sentimos!: LA CPU HA GANADO")
+        break        
+    elif gato_tablero["A3"] == ficha_cpu and gato_tablero["B3"] == ficha_cpu and gato_tablero["C3"] == ficha_cpu:
+        print("Lo sentimos!: LA CPU HA GANADO")
+        break        
+    elif gato_tablero["A1"] == ficha_cpu and gato_tablero["B2"] == ficha_cpu and gato_tablero["C3"] == ficha_cpu:
+        print("Lo sentimos!: LA CPU HA GANADO")
+        break        
+    elif gato_tablero["A3"] == ficha_cpu and gato_tablero["B2"] == ficha_cpu and gato_tablero["C1"] == ficha_cpu:
+        print("Lo sentimos!: LA CPU HA GANADO")
+        break
+    if contador_empate == 9:
+        print("La partida resultó en empate")
+        break
