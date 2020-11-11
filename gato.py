@@ -54,14 +54,14 @@ if ficha_jugador == 'X' or ficha_jugador=='O':
     print("Su Ficha elegida es: ", ficha_jugador)
     print("La ficha de la cpu es: ", ficha_cpu)
     mostrar_tablero()
-    input("Presione una Enter para continuar...")
+    input("Presione Enter para continuar...")
 
 while True:
     os.system("cls")
     mostrar_tablero()
     while True:
         print("El jugador", ficha_jugador ,"está en su jugada\n")
-        jugada1 = input("Ingrese su jugada")
+        jugada1 = input("Ingrese su jugada: ")
         if gato_tablero.get(jugada1) == "":
             gato_tablero[jugada1] = ficha_jugador
             contador_empate += 1
@@ -96,7 +96,7 @@ while True:
         print("Felicitaciones!: GANASTE")
         break
     if contador_empate == 9:
-        print("La partida resultó en empate")
+        print("La partida resultó en empate. Sigue intentandolo!")
         break
     os.system("cls")
     mostrar_tablero()
@@ -139,3 +139,14 @@ while True:
     if contador_empate == 9:
         print("La partida resultó en empate")
         break
+mostrar_tablero()
+print("La partida se cerrará en 5")
+time.sleep(1)
+print("La partida se cerrará en 4")
+time.sleep(1)
+print("La partida se cerrará en 3")
+time.sleep(1)
+print("La partida se cerrará en 2")
+time.sleep(1)
+print("La partida se cerrará en 1")
+time.sleep(1)
